@@ -2,7 +2,6 @@ import React from 'react'
 import Box, { BoxProps } from '@mui/material/Box'
 import Screens from './Screens'
 import Toolbar from './Toolbar'
-import Advertisement from '../Advertisement'
 import { styled, darken, lighten } from '@mui/material/styles'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -27,10 +26,7 @@ const Sidebar = () => {
 
   return (
     <Drawer open={open}>
-      <Advertisement />
-
       <Toolbar direction={open ? 'row' : 'column'} />
-
       <Screens view={open ? 'list' : 'popover'} />
     </Drawer>
   )

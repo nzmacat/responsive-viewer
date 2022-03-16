@@ -1,4 +1,4 @@
-import { useState, MouseEvent, useEffect } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import Popover from '@mui/material/Popover'
 import Zoom from './Zoom'
 import Screenshot from './Screenshot'
@@ -9,6 +9,7 @@ import SettingsIcon from '@mui/icons-material/Settings'
 import IconButton from '@mui/material/IconButton'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import { HideSideBar } from './HideSideBar'
 
 const Tools = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
@@ -33,6 +34,7 @@ const Tools = () => {
       <ViewMode />
       <ScreenDirection />
       <Screenshot />
+      <HideSideBar />
       <Zoom />
     </Stack>
   )

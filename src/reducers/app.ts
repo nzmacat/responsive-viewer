@@ -25,7 +25,9 @@ export interface State {
   tab: string
   tabs: ScreensTab[]
   singleView: boolean
+  sidebar: boolean
 }
+
 const initialState: State = {
   screens: devices,
   userAgents,
@@ -38,6 +40,7 @@ const initialState: State = {
   tab: 'default',
   tabs: defaultTabs(),
   singleView: true,
+  sidebar: false,
 }
 
 export const slice = createSlice({
@@ -103,6 +106,9 @@ export const slice = createSlice({
     },
     switchViewMode(state, action: PayloadAction<ViewMode>) {
       state.viewMode = action.payload
+    },
+    toggleSideBar(state, action: PayloadAction<boolean>) {
+      state.sidebar = action.payload
     },
     switchScreenDirection(state, action: PayloadAction<ScreenDirection>) {
       state.screenDirection = action.payload
@@ -257,6 +263,7 @@ export const {
   switchViewMode,
 
   updateZoom,
+  toggleSideBar,
 
   toggleSyncClick,
   toggleSyncScroll,
@@ -314,6 +321,8 @@ export const selectScreenDirection = (state: RootState) =>
   selectApp(state).screenDirection
 
 export const selectUrl = (state: RootState) => selectApp(state).url
+
+export const sideBarVisible = (state: RootState) => selectApp(state).sidebar
 
 export const selectUserAgents = (state: RootState) =>
   selectApp(state).userAgents

@@ -8,7 +8,7 @@ import HelpDialog from './HelpDialog'
 import Tabs from './Tabs'
 import TabDialog from './TabDialog'
 import Draw from './Draw'
-import { initialize } from '../reducers/app'
+import { initialize, sideBarVisible } from '../reducers/app'
 import { useAppDispatch } from '../hooks/useAppDispatch'
 import { useAppSelector } from '../hooks/useAppSelector'
 import { selectIsAppReady } from '../reducers/layout'
@@ -30,6 +30,7 @@ const Root = styled('div')(({ theme }) => ({
 function App() {
   const dispatch = useAppDispatch()
   const initialized = useAppSelector(selectIsAppReady)
+  const sideBar = useAppSelector(sideBarVisible)
 
   useEffect(() => {
     dispatch(initialize())
@@ -45,21 +46,16 @@ function App() {
       <TabDialog />
       <ScreenDialog />
       <UserAgentDialog />
-
       <HelpDialog />
-
       <AppBar />
       <Draw />
-
       <Box display="flex" overflow="hidden" flex={1}>
-        <Sidebar />
+        {!!sideBar && <Sidebar />}
         <Box flex={1} display="flex" flexDirection={'column'}>
           <Tabs />
-
           <Screens />
         </Box>
       </Box>
-
       <ScreenshotBlocker />
     </Root>
   )
